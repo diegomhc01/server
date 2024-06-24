@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+		<div id="cnn">
+			<label for="usuario">Usuario</label>
+			<input type="text" id="usuario">
+			<label for="nombre">Nombre</label>
+			<input type="text" id="nombre">
+			<button id="conectar">Conectar</button>
+		</div>
+		<div id="msg">
+			<label for="mensaje">Mensaje</label>
+			<input type="text" id="mensaje">
+			<button id="enviar">Enviar</button>
+		</div>
+	<div id="caja"></div>
+<script src="jquery.min.js"></script>
+<script src="socket.io.js"></script>
+<script>
+var socket;
+var conectado = false;
+jQuery(document).ready(function(){
+	iniciario();
+	jQuery('#conectar').on('click',function(){
+		vusuario = jQuery('#usuario').val();
+		vnombre = jQuery('#nombre').val();
+    	valor = {usuario:vusuario,nombre:vnombre};
+    	valor = JSON.stringify(valor);		    	
+		socket.emit('conn', valor);
+	});
+	jQuery('#enviar').on('click',function(){
+		vmensaje = jQuery('#mensaje').val();
+    	valor = {mensaje:vmensaje};
+    	valor = JSON.stringify(valor);		    	
+		socket.emit('enviar', valor);
+		jQuery('#mensaje').val('');
+
+	});
+});
+function iniciario(){
+	try{	
+		socket = io('http://127.0.0.1:9000', {
+		    reconnection: true
+		});
+		socket.on('connect', function(){
+		});
+		socket.on('enviado',function(data){
+			jQuery('#caja').append('<p>Mensaje: '+data.mensaje+'</p>');
+		});
+	}catch(e){
+
+	}
+}
+
+</script>
+</body>
+</html>
+  
