@@ -4,7 +4,7 @@ Este archivo `README.md` describe un servidor API Node.js para la gestión de ma
 
 **Características:**
 
-- Gestiona datos de marcas (la funcionalidad depende del archivo `marca.js`)
+- Gestiona base de datos en MongoDB 
 - CORS habilitado para solicitudes de origen cruzado (potencialmente por razones de seguridad)
 - Analiza los cuerpos de las solicitudes entrantes en formatos JSON y datos de formulario codificados por URL
 
@@ -15,12 +15,13 @@ Este archivo `README.md` describe un servidor API Node.js para la gestión de ma
 
 **Conexión a la Base de Datos (Actualmente Deshabilitada):**
 
-El código incluye una línea comentada `connectionDB()` que probablemente establece una conexión a la base de datos. Necesitarás implementar la función `connectionDB` para conectarte a la base de datos deseada y modificar el código en consecuencia.
+El código incluye `connectionDB()` que establece una conexión a la base de datos. 
 
 **Ejecutando el Servidor:**
 
 1. Inicia el servidor usando `node server.js` (asumiendo que el script principal se llama `server.js`).
-2. El servidor escuchará en el puerto 8080.
+2. Se puede iniciar el servidor usando `npm run dev` con el fin de que se actualice el sistema ante cualquier cambio en el código
+3. El servidor escuchará en el puerto 8080.
 
 **Rutas de la API:**
 
